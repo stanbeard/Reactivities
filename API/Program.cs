@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Domain;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,12 +24,17 @@ namespace API
 
             var services = scope.ServiceProvider;
 
-            try {
+            try
+            {
                 var context = services.GetRequiredService<DataContext>();
                 context.Database.Migrate();
-                await Seed.SeedData(context);
+
+                var userManager = services.GetRequiredService<UserManager<AppUser>>();
+
+                await Seed.SeedData(context, userManager);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 var logger = services.GetRequiredService<ILogger>();
                 logger.LogError(ex, "An error occurred during migration");
             }
