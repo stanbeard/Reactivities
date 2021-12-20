@@ -1,11 +1,9 @@
 import { format } from 'date-fns';
 import { observer } from 'mobx-react-lite';
-import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button, Header, Item, Segment, Image, Label } from 'semantic-ui-react'
 import { Activity } from "../../../app/models/activity";
 import { useStore } from '../../../app/stores/store';
-import UserStore from '../../../app/stores/userStore';
 
 const activityImageStyle = {
     filter: 'brightness(30%)'

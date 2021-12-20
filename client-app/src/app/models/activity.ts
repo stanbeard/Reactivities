@@ -1,4 +1,3 @@
-import { isConstructorDeclaration } from "typescript";
 import { Profile } from "./profile";
 
 export interface Activity {
