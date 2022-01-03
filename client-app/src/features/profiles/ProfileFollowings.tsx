@@ -6,7 +6,6 @@ import ProfileCard from "./ProfileCard";
 export default observer(function ProfileFollowings() {
     const { profileStore } = useStore();
     const { profile, followings, loadingFollowings } = profileStore;
-
     return (
         <Tab.Pane loading={loadingFollowings} >
             <Grid>
