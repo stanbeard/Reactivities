@@ -48,6 +48,7 @@ namespace API
             
             services.AddApplicationServices(_configuration);
             services.AddIdentityServices(_configuration);
+            services.AddLogging();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,18 +62,18 @@ namespace API
             app.UseXfo(opt => opt.Deny());
             app.UseCsp(opt => opt
                 .BlockAllMixedContent()
-                .StyleSources(x => x.Self().CustomSources("https://fonts.googleapis.com"))
-                .FontSources(s => s.Self().CustomSources("https://fonts.gstatic.com", "data:"))
+                .StyleSources(x => x.Self().CustomSources("https://fonts.googleapis.com", "sha256-yChqzBduCCi4o4xdbXRXh4U/t1rP4UUUMJt+rB+ylUI="))
+                .FontSources(s => s.Self().CustomSources("https://fonts.gstatic.com", "data:" ))
                 .FormActions(s => s.Self())
                 .FrameAncestors(s => s.Self())
-                .ImageSources(s => s.Self().CustomSources("https://res.cloudinary.com"))
-                .ScriptSources(s => s.Self().CustomSources("sha256-ZJqpkQLW16Q/sMMT4rc9lbym08Oq5Juk5DuTlBwxQnw="))
+                .ImageSources(s => s.Self().CustomSources("https://res.cloudinary.com", "https://platform-lookaside.fbsbx.com"))
+                .ScriptSources(s => s.Self().CustomSources("sha256-ZJqpkQLW16Q/sMMT4rc9lbym08Oq5Juk5DuTlBwxQnw=", "https://connect.facebook.net", "sha256-KnlRjRloks7rWkm60adqKwYpR2oFH19K0z55mGvimi8="))
             );
 
             if (env.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+                // app.UseSwagger();
+                // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
             } else {
                 // app.UseHsts(); Strict transport security.
                 app.Use(async (context, next) => {

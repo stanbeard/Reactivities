@@ -35,7 +35,9 @@
         {
             "name": ".NET Core Attach",
             "type": "coreclr",
-            "request": "attach"
+            "request": "attach",
+            "program": "${workspaceFolder}/API/bin/Debug/net5.0/API.dll",
+            
         }
     ]
 }

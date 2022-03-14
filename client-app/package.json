@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "@types/facebook-js-sdk": "^3.3.5",
     "@types/jest": "^26.0.24",
     "@types/node": "^12.20.27",
     "@types/react": "^17.0.26",
@@ -38,7 +39,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "move build ../API/wwwroot",
+    "postbuild": "rimraf ../API/wwwroot && move build ../API/wwwroot",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
